@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "marisultimatenetworks",
+  "version": "${version}",
+  "name": "MarisUltimateNetworks",
+  "description": "A wireless transportation mod",
+  "authors": [
+    "Mari_023"
+  ],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/marisultimatenetworks/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "de.mari_023.fabric.marisultimatenetworks.client.MarisUltimateNetworksClient"
+    ],
+    "main": [
+      "de.mari_023.fabric.marisultimatenetworks.MarisUltimateNetworks"
+    ]
+  },
+  "mixins": [
+    "marisultimatenetworks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.9.3+build.207",
+    "fabric": "*",
+    "minecraft": "1.16.2"
+  }
+}
