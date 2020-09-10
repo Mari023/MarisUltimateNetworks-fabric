@@ -4,6 +4,7 @@ import de.mari_023.fabric.marisultimatenetworks.blockentity.EnergyInputBlockEnti
 import de.mari_023.fabric.marisultimatenetworks.blockentity.EnergyOutputBlockEntity;
 import de.mari_023.fabric.marisultimatenetworks.blocks.EnergyInputBlock;
 import de.mari_023.fabric.marisultimatenetworks.blocks.EnergyOutputBlock;
+import de.mari_023.fabric.marisultimatenetworks.item.WrenchItem;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
@@ -21,6 +22,7 @@ public class MarisUltimateNetworks implements ModInitializer {
     public static final Block EnergyOutputBlock = new EnergyOutputBlock();
     public static BlockEntityType<EnergyOutputBlockEntity> EnergyOutputBlockEntity;
 
+    public static final Item Wrench = new WrenchItem();
 
     @Override
     public void onInitialize() {
@@ -31,5 +33,7 @@ public class MarisUltimateNetworks implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier("marisultimatenetworks", "energyoutputblock"), EnergyOutputBlock);
         Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "energyoutputblock"), new BlockItem(EnergyOutputBlock, new Item.Settings().group(ItemGroup.MISC)));
         EnergyOutputBlockEntity = Registry.register(Registry.BLOCK_ENTITY_TYPE, "marisultimatenetworks:energyoutputblockentity", BlockEntityType.Builder.create(EnergyOutputBlockEntity::new, EnergyOutputBlock).build(null));
+
+        Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "wrench"), Wrench);
     }
 }

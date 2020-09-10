@@ -1,4 +1,5 @@
 {
   "block.marisultimatenetworks.energyinputblock": "Energy Input Block",
-  "block.marisultimatenetworks.energyoutputblock": "Energy Output Block"
+  "block.marisultimatenetworks.energyoutputblock": "Energy Output Block",
+  "item.marisultimatenetworks.wrench": "Wrench"
 }

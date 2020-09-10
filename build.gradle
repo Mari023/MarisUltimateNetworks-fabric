@@ -24,6 +24,9 @@ dependencies {
 
     modApi 'teamreborn:energy:0.1.0'
     include 'teamreborn:energy:0.1.0'
+
+    modApi 'com.zundrel:wrenchable:1.0.0+1.16.1'
+    include 'com.zundrel:wrenchable:1.0.0+1.16.1'
 }
 
 processResources {
@@ -57,6 +60,19 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 jar {
     from "LICENSE"
 }
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "Wrenchable"
+        url  "https://dl.bintray.com/zundrel/wrenchable"
+    }
+    maven {
+        name = "dblsaiko"
+        url = "https://maven.dblsaiko.net/"
+    }
+}
+
 
 // configure the maven publication
 publishing {
