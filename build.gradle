@@ -23,7 +23,7 @@ dependencies {
     // You may need to force-disable transitiveness on them.
 
     modApi 'teamreborn:energy:0.1.0'
-    include 'teamreborn:0.1.0'
+    include 'teamreborn:energy:0.1.0'
 }
 
 processResources {
