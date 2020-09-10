@@ -42,12 +42,7 @@ public class EnergyOutputBlockEntity extends BlockEntity implements EnergyStorag
             if (blockEntity == null || !Energy.valid(blockEntity)) {
                 continue;
             }
-            Energy.of(this)
-                    .side(side)
-                    .into(
-                            Energy.of(blockEntity).side(side.getOpposite())
-                    )
-                    .move();
+            Energy.of(blockEntity).set(Energy.of(blockEntity).getMaxStored());
         }
     }
 }
