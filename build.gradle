@@ -24,9 +24,6 @@ dependencies {
 
     modApi 'teamreborn:energy:0.1.0'
     include 'teamreborn:energy:0.1.0'
-
-    //modApi 'com.zundrel:wrenchable:1.0.0+1.16.1'
-    //include 'com.zundrel:wrenchable:1.0.0+1.16.1'
 }
 
 processResources {
@@ -63,14 +60,10 @@ jar {
 
 repositories {
     mavenCentral()
-    maven {
-        name = "Wrenchable"
-        url  "https://dl.bintray.com/zundrel/wrenchable"
-    }
-    maven {
+    /*maven {
         name = "dblsaiko"
         url = "https://maven.dblsaiko.net/"
-    }
+    }*/
 }
 
 

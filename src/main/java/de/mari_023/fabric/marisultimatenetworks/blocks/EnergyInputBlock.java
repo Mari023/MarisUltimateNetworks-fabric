@@ -1,6 +1,5 @@
 package de.mari_023.fabric.marisultimatenetworks.blocks;
 
-//import com.zundrel.wrenchable.block.BlockWrenchable;
 
 import de.mari_023.fabric.marisultimatenetworks.blockentity.EnergyInputBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -10,7 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.world.BlockView;
 
-public class EnergyInputBlock extends Block implements BlockEntityProvider/*, BlockWrenchable*/ {
+public class EnergyInputBlock extends Block implements BlockEntityProvider {
     public EnergyInputBlock() {
         super(FabricBlockSettings.copy(Blocks.STONE));
     }
@@ -19,9 +18,4 @@ public class EnergyInputBlock extends Block implements BlockEntityProvider/*, Bl
     public BlockEntity createBlockEntity(BlockView blockView) {
         return new EnergyInputBlockEntity();
     }
-
-    /*@Override
-    public void onWrenched(World world, PlayerEntity playerEntity, BlockHitResult blockHitResult) {
-        world.breakBlock(blockHitResult.getBlockPos(), true);
-    }*/
 }
