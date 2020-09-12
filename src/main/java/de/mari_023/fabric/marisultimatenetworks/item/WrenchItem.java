@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class WrenchItem extends Item implements IWrench {
     public WrenchItem() {
-        super(new Settings().group(ItemGroup.MISC));
+        super(new Settings().group(ItemGroup.MISC).maxCount(1));
     }
 
     @Override
