@@ -5,13 +5,19 @@ import de.mari_023.fabric.marisultimatenetworks.blockentity.EnergyOutputBlockEnt
 import de.mari_023.fabric.marisultimatenetworks.blocks.EnergyInputBlock;
 import de.mari_023.fabric.marisultimatenetworks.blocks.EnergyOutputBlock;
 import de.mari_023.fabric.marisultimatenetworks.item.WrenchItem;
+import de.mari_023.fabric.mariswrenchapi.IWrench;
+import de.mari_023.fabric.mariswrenchapi.IWrenchAble;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.registry.Registry;
 
 public class MarisUltimateNetworks implements ModInitializer {
@@ -35,5 +41,18 @@ public class MarisUltimateNetworks implements ModInitializer {
         EnergyOutputBlockEntity = Registry.register(Registry.BLOCK_ENTITY_TYPE, "marisultimatenetworks:energyoutputblockentity", BlockEntityType.Builder.create(EnergyOutputBlockEntity::new, EnergyOutputBlock).build(null));
 
         Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "wrench"), Wrench);
+
+        initializeWrench();
+    }
+
+    public void initializeWrench() {
+        UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+            if (!(player.getStackInHand(hand).getItem() instanceof IWrench)) return ActionResult.PASS;
+            if (!hitResult.getType().equals(HitResult.Type.BLOCK)) return ActionResult.PASS;
+            if (!(world.getBlockState(hitResult.getBlockPos()).getBlock() instanceof IWrenchAble))
+                return ActionResult.PASS;
+            player.sendMessage(Text.of("Wrenched!"), false);
+            return ActionResult.SUCCESS;
+        });
     }
 }
