@@ -16,9 +16,12 @@ public abstract class BlockBasic extends Block implements IWrenchAble {
         super(FabricBlockSettings.copy(Blocks.STONE));
     }
 
-    @Override
-    public ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
+    public ActionResult wrenchSneaking(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
         world.breakBlock(hitResult.getBlockPos(), true, player);
         return ActionResult.SUCCESS;
+    }
+
+    public ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
+        return ActionResult.PASS;
     }
 }

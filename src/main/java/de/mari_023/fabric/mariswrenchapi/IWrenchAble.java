@@ -7,5 +7,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.World;
 
 public interface IWrenchAble {
+    ActionResult wrenchSneaking(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult);
+
     ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult);
 }

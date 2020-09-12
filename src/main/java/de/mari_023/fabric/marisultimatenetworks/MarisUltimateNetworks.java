@@ -39,7 +39,7 @@ public class MarisUltimateNetworks implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "energyoutputblock"), new BlockItem(EnergyOutputBlock, new Item.Settings().group(ItemGroup.MISC)));
         EnergyOutputBlockEntity = Registry.register(Registry.BLOCK_ENTITY_TYPE, "marisultimatenetworks:energyoutputblockentity", BlockEntityType.Builder.create(EnergyOutputBlockEntity::new, EnergyOutputBlock).build(null));
 
-        Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "wrench"), Wrench);
+        Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "wrenchSneaking"), Wrench);
 
         initializeWrench();
     }
@@ -52,9 +52,10 @@ public class MarisUltimateNetworks implements ModInitializer {
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, false, false);
             if (!(world.getBlockState(hitResult.getBlockPos()).getBlock() instanceof IWrenchAble))
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, true, false);
-            if (!player.isSneaking())
+            if (!player.isSneaking() &&
+                    ((IWrenchAble) world.getBlockState(hitResult.getBlockPos()).getBlock()).wrench(player, world, hand, hitResult).equals(ActionResult.PASS))
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, true, true);
-            return ((IWrenchAble) world.getBlockState(hitResult.getBlockPos()).getBlock()).wrench(player, world, hand, hitResult);
+            return ((IWrenchAble) world.getBlockState(hitResult.getBlockPos()).getBlock()).wrenchSneaking(player, world, hand, hitResult);
         });
     }
 }
