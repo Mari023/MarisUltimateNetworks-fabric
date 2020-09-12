@@ -7,5 +7,5 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
 public interface IWrench {
-    ActionResult wrench(PlayerEntity player, World world, Hand hand, HitResult hitResult);
+    ActionResult wrench(PlayerEntity player, World world, Hand hand, HitResult hitResult, boolean hitblock);
 }

@@ -16,7 +16,7 @@ public class WrenchItem extends Item implements IWrench {
     }
 
     @Override
-    public ActionResult wrench(PlayerEntity player, World world, Hand hand, HitResult hitResult) {
+    public ActionResult wrench(PlayerEntity player, World world, Hand hand, HitResult hitResult, boolean hitblock) {
         player.sendMessage(Text.of("Wrenchmode"), true);
         return ActionResult.PASS;
     }
