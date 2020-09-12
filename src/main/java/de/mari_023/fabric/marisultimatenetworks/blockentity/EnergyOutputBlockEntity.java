@@ -1,7 +1,9 @@
 package de.mari_023.fabric.marisultimatenetworks.blockentity;
 
 import de.mari_023.fabric.marisultimatenetworks.MarisUltimateNetworks;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 import team.reborn.energy.Energy;
@@ -28,5 +30,15 @@ public class EnergyOutputBlockEntity extends BlockEntityBasic implements Tickabl
             }
             Energy.of(blockEntity).set(Energy.of(blockEntity).getMaxStored());
         }
+    }
+
+    public CompoundTag toTag(CompoundTag tag) {
+        super.toTag(tag);
+
+        return tag;
+    }
+
+    public void fromTag(BlockState state, CompoundTag tag) {
+        super.fromTag(state, tag);
     }
 }
