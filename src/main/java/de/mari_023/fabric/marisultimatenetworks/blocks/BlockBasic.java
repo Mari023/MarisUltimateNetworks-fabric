@@ -7,10 +7,9 @@ import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
@@ -28,8 +27,8 @@ public abstract class BlockBasic extends Block implements BlockEntityProvider, I
     }
 
     @Override
-    public ActionResult wrench(PlayerEntity player, World world, Hand hand, HitResult hitResult) {
-        player.sendMessage(Text.of("Wrenched!"), false);
+    public ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
+        world.breakBlock(hitResult.getBlockPos(), true, player);
         return ActionResult.SUCCESS;
     }
 }
