@@ -5,7 +5,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import team.reborn.energy.EnergySide;
 
+import java.util.UUID;
+
 public class EnergyInputBlockEntity extends BlockEntityBasic {
+
+    public UUID owner;
+
     public EnergyInputBlockEntity() {
         super(MarisUltimateNetworks.EnergyInputBlockEntity);
     }
@@ -16,11 +21,12 @@ public class EnergyInputBlockEntity extends BlockEntityBasic {
 
     public CompoundTag toTag(CompoundTag tag) {
         super.toTag(tag);
-
+        tag.putUuid("owner", owner);
         return tag;
     }
 
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
+        owner = tag.getUuid("owner");
     }
 }
