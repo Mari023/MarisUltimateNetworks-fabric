@@ -48,7 +48,8 @@ public class MarisUltimateNetworks implements ModInitializer {
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             if (world.isClient) return ActionResult.PASS;
             if (!(player.getStackInHand(hand).getItem() instanceof IWrench)) return ActionResult.PASS;
-            if (!hitResult.getType().equals(HitResult.Type.BLOCK)) return ActionResult.PASS;
+            if (!hitResult.getType().equals(HitResult.Type.BLOCK))
+                return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult);
             if (!(world.getBlockState(hitResult.getBlockPos()).getBlock() instanceof IWrenchAble))
                 return ActionResult.PASS;
             return ((IWrenchAble) world.getBlockState(hitResult.getBlockPos()).getBlock()).wrench(player, world, hand, hitResult);
