@@ -7,7 +7,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 public class EnergyOutputBlock extends Block implements BlockEntityProvider, IWrenchAble {
     public EnergyOutputBlock() {
@@ -17,5 +23,11 @@ public class EnergyOutputBlock extends Block implements BlockEntityProvider, IWr
     @Override
     public BlockEntity createBlockEntity(BlockView blockView) {
         return new EnergyOutputBlockEntity();
+    }
+
+    @Override
+    public ActionResult wrench(PlayerEntity player, World world, Hand hand, HitResult hitResult) {
+        player.sendMessage(Text.of("Wrenched!"), false);
+        return ActionResult.SUCCESS;
     }
 }

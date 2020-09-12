@@ -14,7 +14,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.HitResult;
@@ -52,8 +51,7 @@ public class MarisUltimateNetworks implements ModInitializer {
             if (!hitResult.getType().equals(HitResult.Type.BLOCK)) return ActionResult.PASS;
             if (!(world.getBlockState(hitResult.getBlockPos()).getBlock() instanceof IWrenchAble))
                 return ActionResult.PASS;
-            player.sendMessage(Text.of("Wrenched!"), false);
-            return ActionResult.SUCCESS;
+            return ((IWrenchAble) world.getBlockState(hitResult.getBlockPos()).getBlock()).wrench(player, world, hand, hitResult);
         });
     }
 }
