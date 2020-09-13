@@ -10,6 +10,7 @@ import de.mari_023.fabric.mariswrenchapi.IWrenchAble;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -50,12 +51,15 @@ public class MarisUltimateNetworks implements ModInitializer {
             if (!(player.getStackInHand(hand).getItem() instanceof IWrench)) return ActionResult.PASS;
             if (!hitResult.getType().equals(HitResult.Type.BLOCK))
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, false, false);
-            if (!(world.getBlockState(hitResult.getBlockPos()).getBlock() instanceof IWrenchAble))
+            BlockEntity blockEntity = world.getBlockEntity(hitResult.getBlockPos());
+            if (blockEntity == null)
+                return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, false, false);
+            if (!(blockEntity instanceof IWrenchAble))
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, true, false);
             if (!player.isSneaking() &&
-                    ((IWrenchAble) world.getBlockState(hitResult.getBlockPos()).getBlock()).wrench(player, world, hand, hitResult).equals(ActionResult.PASS))
+                    ((IWrenchAble) blockEntity).wrench(player, world, hand, hitResult).equals(ActionResult.PASS))
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, true, true);
-            return ((IWrenchAble) world.getBlockState(hitResult.getBlockPos()).getBlock()).wrenchSneaking(player, world, hand, hitResult);
+            return ((IWrenchAble) blockEntity).wrenchSneaking(player, world, hand, hitResult);
         });
     }
 }
