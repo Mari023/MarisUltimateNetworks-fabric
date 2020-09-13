@@ -1,25 +1,20 @@
 package de.mari_023.fabric.marisultimatenetworks.blocks;
 
 import de.mari_023.fabric.marisultimatenetworks.blockentity.EnergyOutputBlockEntity;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.BlockView;
 
-public class EnergyOutputBlock extends BlockBasic implements BlockEntityProvider {
-
-    private final EnergyOutputBlockEntity blockEntity = new EnergyOutputBlockEntity();
-
+public class EnergyOutputBlock extends Block implements BlockEntityProvider {
     public EnergyOutputBlock() {
-        super();
+        super(FabricBlockSettings.copy(Blocks.STONE));
     }
 
     @Override
     public BlockEntity createBlockEntity(BlockView world) {
-        return blockEntity;
-    }
-
-    public CompoundTag toTag(CompoundTag tag) {
-        return blockEntity.toTag(tag);
+        return new EnergyOutputBlockEntity();
     }
 }
