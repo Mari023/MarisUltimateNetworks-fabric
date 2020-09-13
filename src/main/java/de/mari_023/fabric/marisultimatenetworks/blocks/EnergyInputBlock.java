@@ -4,6 +4,7 @@ import de.mari_023.fabric.marisultimatenetworks.blockentity.EnergyInputBlockEnti
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -29,7 +30,13 @@ public class EnergyInputBlock extends BlockBasic implements BlockEntityProvider 
             blockEntity.owner = player.getUuid();
             player.sendMessage(Text.of("Set Owner to " + player.getName()), true);
             return ActionResult.SUCCESS;
+        } else {
+            player.sendMessage(Text.of("Owner " + blockEntity.owner), true);
+            return ActionResult.FAIL;
         }
-        return ActionResult.FAIL;
+    }
+
+    public CompoundTag toTag(CompoundTag tag) {
+        return blockEntity.toTag(tag);
     }
 }
