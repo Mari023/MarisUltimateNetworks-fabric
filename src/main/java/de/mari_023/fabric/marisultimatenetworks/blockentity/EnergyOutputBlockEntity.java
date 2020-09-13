@@ -76,7 +76,7 @@ public class EnergyOutputBlockEntity extends BlockEntity implements EnergyStorag
     public ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
         if (owner == null) {
             owner = player.getUuid();
-            player.sendMessage(Text.of("Set Owner to " + player.getName()), true);
+            player.sendMessage(Text.of("Set Owner to " + player.getName()), false);
             return ActionResult.SUCCESS;
         } else {
             player.sendMessage(Text.of("Owner " + owner), true);
