@@ -56,9 +56,12 @@ public class MarisUltimateNetworks implements ModInitializer {
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, false, false);
             if (!(blockEntity instanceof IWrenchAble))
                 return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, true, false);
-            if (!player.isSneaking() &&
-                    ((IWrenchAble) blockEntity).wrench(player, world, hand, hitResult).equals(ActionResult.PASS))
-                return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, true, true);
+            if (!player.isSneaking()) {
+                ActionResult r = ((IWrenchAble) blockEntity).wrench(player, world, hand, hitResult);
+                if (r.equals(ActionResult.PASS))
+                    return ((IWrench) player.getStackInHand(hand).getItem()).wrench(player, world, hand, hitResult, true, true);
+                else return r;
+            }
             return ((IWrenchAble) blockEntity).wrenchSneaking(player, world, hand, hitResult);
         });
     }
