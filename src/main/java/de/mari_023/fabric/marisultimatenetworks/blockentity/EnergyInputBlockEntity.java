@@ -59,7 +59,7 @@ public class EnergyInputBlockEntity extends BlockEntity implements EnergyStorage
     public ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
         if (owner == null) {
             owner = player.getUuid();
-            player.sendMessage(Text.of("Set Owner to " + player.getName()), false);
+            player.sendMessage(Text.of("Set Owner to " + player.getName().asString()), false);
             return ActionResult.SUCCESS;
         } else {
             player.sendMessage(Text.of("Owner " + owner), true);
@@ -69,7 +69,12 @@ public class EnergyInputBlockEntity extends BlockEntity implements EnergyStorage
 
     public ActionResult wrenchSneaking(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
         ItemStack block = new ItemStack(world.getBlockState(hitResult.getBlockPos()).getBlock().asItem());
-        block.setTag(toTag(new CompoundTag()));
+        CompoundTag tag = toTag(new CompoundTag()).copy();
+        tag.remove("x");
+        tag.remove("y");
+        tag.remove("z");
+        tag.remove("id");
+        if (!tag.isEmpty()) block.setTag(tag);
         world.breakBlock(hitResult.getBlockPos(), false, player);
         world.spawnEntity(new ItemEntity(world, hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ(), block));
         return ActionResult.SUCCESS;
