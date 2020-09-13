@@ -39,7 +39,7 @@ public class MarisUltimateNetworks implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "energyoutputblock"), new BlockItem(EnergyOutputBlock, new Item.Settings().group(ItemGroup.MISC)));
         EnergyOutputBlockEntity = Registry.register(Registry.BLOCK_ENTITY_TYPE, "marisultimatenetworks:energyoutputblockentity", BlockEntityType.Builder.create(EnergyOutputBlockEntity::new, EnergyOutputBlock).build(null));
 
-        Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "wrenchSneaking"), Wrench);
+        Registry.register(Registry.ITEM, new Identifier("marisultimatenetworks", "wrench"), Wrench);
 
         initializeWrench();
     }
