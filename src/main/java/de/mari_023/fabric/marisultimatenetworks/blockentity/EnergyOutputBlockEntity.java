@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class EnergyOutputBlockEntity extends BlockEntity implements EnergyStorage, Tickable, IWrenchAble {
 
-    public UUID owner;
+    public UUID owner = new UUID(0, 0);
 
     public EnergyOutputBlockEntity() {
         super(MarisUltimateNetworks.EnergyOutputBlockEntity);
@@ -74,7 +74,7 @@ public class EnergyOutputBlockEntity extends BlockEntity implements EnergyStorag
     }
 
     public ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
-        if (owner == null) {
+        if (owner.equals(new UUID(0, 0))) {
             owner = player.getUuid();
             player.sendMessage(Text.of("Set Owner to " + player.getName().asString()), false);
             return ActionResult.SUCCESS;
@@ -91,6 +91,7 @@ public class EnergyOutputBlockEntity extends BlockEntity implements EnergyStorag
         tag.remove("y");
         tag.remove("z");
         tag.remove("id");
+        if (tag.getUuid("owner").equals(new UUID(0, 0))) tag.remove("owner");
         if (!tag.isEmpty()) block.setTag(tag);
         world.breakBlock(hitResult.getBlockPos(), false, player);
         world.spawnEntity(new ItemEntity(world, hitResult.getPos().getX(), hitResult.getPos().getY(), hitResult.getPos().getZ(), block));
