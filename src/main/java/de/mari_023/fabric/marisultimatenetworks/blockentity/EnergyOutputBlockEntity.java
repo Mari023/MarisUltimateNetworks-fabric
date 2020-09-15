@@ -70,7 +70,10 @@ public class EnergyOutputBlockEntity extends BlockEntity implements EnergyStorag
 
     public void fromTag(BlockState state, CompoundTag tag) {
         super.fromTag(state, tag);
-        owner = tag.getUuid("owner");
+        try {
+            owner = tag.getUuid("owner");
+        } catch (Exception ignored) {
+        }
     }
 
     public ActionResult wrench(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
